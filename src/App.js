@@ -1,25 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 
-function App() {
+const relicUrl = "https://drops.warframestat.us/data/relics/Axi/R1.json";
+const booksUrl = "https://www.anapioficeandfire.com/api/books";
+
+function App()
+{
+  const [relic, setRelic] = useState(null);
+
+  useEffect(() => {
+    getDataFun().then(response => setRelic(response));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <img src={logo} alt="logo" width="100" height="100" /><br/>
+        API RESPONSE:<br/>
+        Relic[{relic?.toString()}]<br/>
+        Tier[{relic?.tier}]<br/>
+        Name[{relic?.name}] <br/>
     </div>
   );
+}
+
+async function getDataFun() {
+  const response = await fetch(relicUrl);
+  const data = await response.json();
+  return data;
 }
 
 export default App;
