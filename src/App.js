@@ -5,7 +5,7 @@ import RelicSearcher from './components/RelicSearcher';
 function App()
 {
   return (
-    <div className="App" style={{display:'grid', placeItems:'center', backgroundColor:'DarkSlateGrey'}}>
+    <div className="App" style={{display:'grid', placeItems:'center'}}>
         <img src={logo} alt="logo" width="100" height="100" /><br/>
         <RelicSearcher/>
     </div>
