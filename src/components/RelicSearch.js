@@ -17,6 +17,7 @@ export const RelicSearch = ({setRelic}) => {
                 <option value="Meso">Meso</option>
                 <option value="Neo">Neo</option>
                 <option value="Axi">Axi</option>
+                <option value="Requiem">Requiem</option>
             </select>
             <label>     Name: </label>
             <textarea style={{height:15}} value={name} onChange={(event) => setName(event.target.value)} />
