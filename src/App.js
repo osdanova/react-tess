@@ -1,13 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState, useEffect } from 'react';
-import RelicDiv from './RelicDiv';
-import Clock from './Clock';
+import RelicSearcher from './components/RelicSearcher';
 
-const relicUrl = "https://drops.warframestat.us/data/relics";
-const relicUrlAxiR1 = "https://drops.warframestat.us/data/relics/Axi/R1.json";
-const booksUrl = "https://www.anapioficeandfire.com/api/books";
+function App()
+{
+  return (
+    <div className="App" style={{display:'grid', placeItems:'center', backgroundColor:'DarkSlateGrey'}}>
+        <img src={logo} alt="logo" width="100" height="100" /><br/>
+        <RelicSearcher/>
+    </div>
+  );
+}
 
+/*
 function App()
 {
   const [relic, setRelic] = useState(null);
@@ -24,7 +29,9 @@ function App()
         Tier[{relic?.tier}]<br/>
         Name[{relic?.name}] <br/>
         ----<br/>
-        <form action="">
+        <RelicSearcher/>
+
+        <form onSubmit={changeRelicEvent}>
           <label for="tiers">Tier: </label>
           <select name="tiers" id="tiers">
             <option value="lith">Lith</option>
@@ -40,11 +47,28 @@ function App()
           <input type="submit" value="Retrieve"/>
         </form>
         <br/>
-      <RelicDiv relic={relic} />
-      <Clock />
+        <RelicComponent id='my-relic-com' relic={relic} />
+      <Clock extraDate={new Date()}/>
     </div>
   );
+
+  async function changeRelicEvent(e) {
+    e.preventDefault();
+    
+    const myRelicComponent = document.querySelector('#my-relic-com');
+    if(myRelicComponent != null)
+    {
+      getDataFun().then(response => myRelicComponent.setRelic(response));
+    }
+    else
+    {
+      console.log('ERROR: component not found');
+    }
+    console.log('You clicked submit.');
+  }
+
 }
+//<RelicDiv relic={relic} />
 
 async function getDataFun() {
   const response = await fetch(getRelicURL("Lith","R1"));
@@ -61,5 +85,7 @@ async function retrieveRelicData(tier,name) {
 function getRelicURL(tier,name) {
   return relicUrl + "/" + tier + "/" + name + ".json";
 }
+*/
+
 
 export default App;
